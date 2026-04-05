@@ -161,7 +161,7 @@ const FeaturedDestination = () => {
                     </div>
 
                     {/* City */}
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-3 pt-8 pb-3">
+                    <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/60 to-transparent px-3 pt-8 pb-3">
                       <p className="text-white text-xs font-medium">
                         {room?.hotel?.city || room?.city || ""}
                       </p>
@@ -238,7 +238,7 @@ const FeaturedDestination = () => {
                 alt={selectedRoom?.hotel?.name || selectedRoom?.name}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
               <button
                 onClick={() => setSelectedRoom(null)}
                 className="absolute top-3 right-3 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-gray-600 hover:bg-white transition"
