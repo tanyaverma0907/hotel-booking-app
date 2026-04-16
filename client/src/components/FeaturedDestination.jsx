@@ -14,6 +14,8 @@ const FeaturedDestination = () => {
 
   const tabs = ["All", "Beach", "Mountain", "City", "Heritage"];
 
+  console.log("Fetched rooms:", rooms);
+
   useEffect(() => {
     const fetchHotels = async () => {
       try {
@@ -155,8 +157,13 @@ const FeaturedDestination = () => {
                     </button>
 
                     {/* Price */}
-                    <div className="absolute top-3 right-3 bg-white/90 text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-full">
+                    {/* <div className="absolute top-3 right-3 bg-white/90 text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-full">
                       ₹{(room?.pricePerNight || room?.price || 0).toLocaleString()}
+                      <span className="text-gray-400 font-normal"> /night</span>
+                    </div> */}
+
+                    <div className="absolute top-3 right-3 bg-white/90 text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-full">
+                      ₹{(room?.price_per_night || 0).toLocaleString()}
                       <span className="text-gray-400 font-normal"> /night</span>
                     </div>
 

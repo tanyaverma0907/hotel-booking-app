@@ -39,19 +39,62 @@ export const createHotel = async (req, res) => {
 
 
 // ✅ GET ALL HOTELS (with search 🔍)
+// export const getAllHotels = async (req, res) => {
+//   try {
+//     const { city } = req.query;
+
+//     let query = "SELECT * FROM hotels WHERE 1=1";
+//     const values = [];
+
+//     if (city) {
+//       values.push(`%${city}%`);
+//       query += ` AND city ILIKE $${values.length}`;
+//     }
+
+//     query += " ORDER BY id DESC";
+
+//     const result = await pool.query(query, values);
+
+//     res.status(200).json({
+//       success: true,
+//       count: result.rows.length,
+//       data: result.rows,
+//     });
+
+//   } catch (error) {
+//     console.error("Error fetching hotels:", error);
+//     res.status(500).json({
+//       success: false,
+//       message: "Internal Server Error",
+//     });
+//   }
+// };
+
 export const getAllHotels = async (req, res) => {
   try {
     const { city } = req.query;
 
-    let query = "SELECT * FROM hotels WHERE 1=1";
+    let query = `
+      SELECT 
+        hotels.id,
+        hotels.name,
+        hotels.address,
+        hotels.city,
+        hotels.contact,
+        rooms.price_per_night
+      FROM hotels
+      JOIN rooms ON hotels.id = rooms.hotel_id
+      WHERE 1=1
+    `;
+
     const values = [];
 
     if (city) {
       values.push(`%${city}%`);
-      query += ` AND city ILIKE $${values.length}`;
+      query += ` AND hotels.city ILIKE $${values.length}`;
     }
 
-    query += " ORDER BY id DESC";
+    query += " ORDER BY hotels.id DESC";
 
     const result = await pool.query(query, values);
 
